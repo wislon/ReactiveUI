@@ -13,9 +13,9 @@ cd "$(dirname "$0")/.."
 
 cibuild()
 {
-    timestamp
-
-    "${MDTOOL}" build -c:Clean ./src/ReactiveUI_XSAll.sln
+    #timestamp
+    #
+    #"${MDTOOL}" build -c:Clean ./src/ReactiveUI_XSAll.sln
 
     timestamp
 
