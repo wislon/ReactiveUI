@@ -1,0 +1,47 @@
+#!/usr/bin/env bash
+
+# script/build - builds the project
+
+# exit on sub-module failure
+set -e
+
+# location of the Xamarin compiler
+export MDTOOL="/Applications/Xamarin Studio.app/Contents/MacOS/mdtool"
+
+# move to parent dir as CI should have set PWD to be $repo/script
+cd "$(dirname "$0")/.."
+
+cibuild()
+{
+    timestamp
+
+    "${MDTOOL}" build -c:Clean ./src/ReactiveUI_XSAll.sln
+
+    timestamp
+
+    /usr/bin/env wget https://dist.nuget.org/win-x86-commandline/latest/nuget.exe > NuGet.exe
+
+    timestamp
+
+    /usr/bin/env mono NuGet.exe restore ./src/ReactiveUI_XSAll.sln
+
+    timestamp
+
+    "${MDTOOL}" build -c:Release ./src/ReactiveUI_XSAll.sln
+
+    timestamp
+}
+
+timestamp()
+{
+    echo "--------- "
+    echo `date`
+    echo "--------- "
+}
+
+if [ "$(uname)" == "Darwin" ]; then
+    cibuild
+else
+   echo Building on `uname -v` is not implemented.
+   exit 1
+fi

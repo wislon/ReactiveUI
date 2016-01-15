@@ -1,0 +1,59 @@
+#!/usr/bin/env bash
+
+# script/bootstrap - make sure all required dependencies are setup
+
+# exit on sub-module failure
+set -e
+
+# move to parent dir as CI should have set PWD to be $repo/script
+cd "$(dirname "$0")/.."
+
+bootstrap()
+{
+    timestamp
+
+    echo "local apps after"
+    ls -la ~/Applications
+
+    echo "root apps after"
+    ls -la /Applications
+
+    # install homebrew
+    # ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+
+    # install brew cask
+    brew install caskroom/cask/brew-cask
+
+    timestamp
+
+    # install xamarin components
+    brew cask install java xamarin xamarin-jdk xamarin-ios xamarin-studio
+
+    timestamp
+
+    echo "local appsi after"
+    ls -la ~/Applications
+
+    echo "root apps after"
+    ls -la /Applications
+
+    timestamp
+}
+
+timestamp()
+{
+    echo "--------- "
+    echo `date`
+    echo "--------- "
+}
+
+if [ "$(uname)" == "Darwin" ]; then
+    bootstrap
+else
+   echo Bootstrapping `uname -v` is not implemented.
+   exit 1
+fi
+
+#elif [ "$(expr substr $(uname -s) 1 5)" == "Linux" ]; then
+#elif [ "$(expr substr $(uname -s) 1 10)" == "MINGW32_NT" ]; then
+#fi

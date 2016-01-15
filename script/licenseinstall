@@ -1,0 +1,43 @@
+#!/usr/bin/env bash
+
+# script/licenseinstall - installs Xamarin licenses
+
+# exit on sub-module failure
+set -e
+
+# location of the Xamarin compiler
+export MDTOOL="/Applications/Xamarin Studio.app/Contents/MacOS/mdtool"
+
+# move to parent dir as CI should have set PWD to be $repo/script
+cd "$(dirname "$0")/.."
+
+install()
+{
+    timestamp
+
+    "${MDTOOL}" account info
+
+    timestamp
+
+    "${MDTOOL}" account login --username="$1" --password="$2"
+
+    timestamp
+
+    "${MDTOOL}" account info
+
+    timestamp
+}
+
+timestamp()
+{
+    echo "--------- "
+    echo `date`
+    echo "--------- "
+}
+
+if [ "$(uname)" == "Darwin" ]; then
+    install $1 $2
+else
+   echo Building on `uname -v` is not implemented.
+   exit 1
+fi
