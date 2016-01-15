@@ -12,11 +12,11 @@ bootstrap()
 {
     timestamp
 
-    echo "local apps after"
-    ls -la ~/Applications
+    #echo "local apps after"
+    #ls -la ~/Applications
 
-    echo "root apps after"
-    ls -la /Applications
+    #echo "root apps after"
+    #ls -la /Applications
 
     # install homebrew
     # ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
@@ -31,11 +31,11 @@ bootstrap()
 
     timestamp
 
-    echo "local appsi after"
-    ls -la ~/Applications
+    #echo "local appsi after"
+    #ls -la ~/Applications
 
-    echo "root apps after"
-    ls -la /Applications
+    #echo "root apps after"
+    #ls -la /Applications
 
     timestamp
 }
