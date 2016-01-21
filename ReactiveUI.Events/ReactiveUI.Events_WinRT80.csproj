@@ -85,15 +85,6 @@
     <VisualStudioVersion>11.0</VisualStudioVersion>
   </PropertyGroup>
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\WindowsXaml\v$(VisualStudioVersion)\Microsoft.Windows.UI.Xaml.CSharp.targets" />
-  <PropertyGroup>
-    <PreBuildEvent>%25SystemRoot%25\Microsoft.NET\Framework\v4.0.30319\msbuild.exe /p:Configuration=Release "$(ProjectDir)EventBuilder.csproj"
-"$(ProjectDir)EventBuilder.exe" "$(ProjectDir)\WinMetadata.Win80\Windows.winmd" "$(ProjectDir)Events.mustache" &gt; "$(ProjectDir)Events_WinRT80.cs"
-del "$(ProjectDir)EventBuilder.exe"
-del "$(ProjectDir)EventBuilder.pdb"
-del "$(ProjectDir)Nustache.Core.dll"
-del "$(ProjectDir)Mono.Cecil.dll"
-del "$(ProjectDir)Mono.Cecil.pdb"</PreBuildEvent>
-  </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">

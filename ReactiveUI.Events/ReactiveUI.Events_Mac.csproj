@@ -32,11 +32,6 @@
     <WarningLevel>4</WarningLevel>
     <CodeAnalysisRuleSet>ExtendedCorrectnessRules.ruleset</CodeAnalysisRuleSet>
     <RunCodeAnalysis>false</RunCodeAnalysis>
-    <CustomCommands>
-      <CustomCommands>
-        <Command type="BeforeBuild" command="/usr/bin/env ruby ${ProjectDir}/generate_events.rb /Library/Frameworks/Xamarin.Mac.framework/Versions/Current/lib/mono/XamMac.dll" />
-      </CustomCommands>
-    </CustomCommands>
     <EnableCodeSigning>false</EnableCodeSigning>
     <CreatePackage>false</CreatePackage>
     <EnablePackageSigning>false</EnablePackageSigning>
